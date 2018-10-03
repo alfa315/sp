@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import NavMenu from '../navbar/NavMenu.js'
 import ProgressBar from './ProgressBar.js'
+import Dropdown from './Dropdown.js'
 
 
 class HomePage extends Component {
   state = {
-    activeItem: 1
+    activeItem: 1,
+    integration: ["Ads","Analytics","Forms","Site Customization", "Site Optimization"],
+    default: "Ads"
   }
 
   updateInstructions = () => {
@@ -39,15 +42,29 @@ class HomePage extends Component {
     this.updateInstructions()
   }
 
+  handleChange = (e) => {
+    this.setState({
+      default: e.target.value
+    })
+  }
+
   render() {
     return(
       <div>
         <NavMenu
         />
+
+        <Dropdown
+          integrations = {this.state.integration}
+          handleChange = {this.handleChange}
+        />
+
         <ProgressBar
           activeItem = {this.state.activeItem}
           handleClick = {this.handleClick}
+          selected = {this.state.default}
         />
+
         <p id="nextSteps">Hi, sit tight we are setting up initial configurations for your tag now! If you have any immediate questions, please do not hesitate to contact the Demandbase team.</p>
       </div>
     )

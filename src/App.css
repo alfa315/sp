@@ -89,3 +89,7 @@ li:first-child::before {
 .active ~ li::before {
   background: rgb(133, 176, 186);
 }
+
+.select {
+  margin-top: 50px;
+}
